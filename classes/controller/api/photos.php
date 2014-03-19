@@ -11,7 +11,10 @@ class Controller_API_Photos extends Controller_System_API {
 		if($status == TRUE)
 		{
 			$photo = ORM::factory('photo')
-				->values(array('category_id' => (int) $this->param('id', NULL, 0)))
+				->values(array(
+					'category_id' => (int) $this->param('id', NULL, 0),
+					'type' => Model_Photo::TYPE_IMAGE
+				))
 				->create();
 			
 			$photo->add_image($filename, 'filename');

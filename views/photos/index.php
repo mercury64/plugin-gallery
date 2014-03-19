@@ -23,12 +23,14 @@
 	</div>
 	
 	<div class="widget-content">
+		<?php if( ! Request::initial()->is_iframe()): ?>
 		<?php if(!empty($categories)): ?>
 		<div class="thumbnails categories droppable pull-left">
 			<?php foreach ($categories as $cat): ?>
 				<?php echo View::factory('photos/category', array('category' => $cat)); ?>
 			<?php endforeach; ?>
 		</div>
+		<?php endif; ?>
 		<?php endif; ?>
 	
 		<div class="thumbnails sortable photos">
