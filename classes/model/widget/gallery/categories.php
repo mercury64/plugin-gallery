@@ -8,7 +8,7 @@ class Model_Widget_Gallery_Categories extends Model_Widget_Decorator_Pagination 
 	public $path_ctx = '.category_path';
 
 	public function get_current_category_id()
-	{		
+	{
 		$category_id = $this->_ctx->get($this->id_ctx);
 		
 		if($category_id === NULL)
