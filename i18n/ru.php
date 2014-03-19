@@ -15,5 +15,8 @@ return array(
 	'Root category' => 'Начальная категория',
 	'Gallery Categories' => 'Категории галереи',
 	'Upload by url' => 'Загрузить по ссылке',
-	'Url to file' => 'Ссылка'
+	'Url to file' => 'Ссылка',
+	'Show only categories with attached image' => 'Показывать только категории с изображением',
+	'Category ID (Ctx)' => 'Идентификатор категории (Ctx)',
+	'Category path (Ctx)' => 'Путь до категории (Ctx)',
 );
