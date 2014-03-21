@@ -7,7 +7,6 @@ cms.init.add('photos_index', function(){
 		cms.uploader.options.acceptedFiles = '.jpg,.jpeg,.png';
 		cms.uploader.options.params = {id: CATEGORY_ID};
 		cms.uploader.on('success', function(file, response) {
-			var self = this;
 			response = $.parseJSON(response);
 			if(response.code == 200) {
 				var row = $(response.response).hide();
@@ -19,23 +18,22 @@ cms.init.add('photos_index', function(){
 			var cont = $(this).parent();
 			var id = cont.data('id');
 
-			Api.post('/api-photos.delete', {id: id}, function(resp){
+			Api.post(SITE_URL + 'api-photos.delete', {id: id}, function(resp){
 				if(resp.response) {
 					cont.fadeOut(function() {
 						$(this).remove();
 					});
 				}
-			},'json')
+			},'json');
 		});
 	});
 	
-
 	$('.photos').on('click', '.icon-picture', function() {
 		var cont = $(this).parent();
 		var id = cont.data('id');
 		var self = $(this);
 		
-		Api.post('/api-photos.category_image', {id: id, category_id: CATEGORY_ID}, function(request){
+		Api.post(SITE_URL + 'api-photos.category_image', {id: id, category_id: CATEGORY_ID}, function(request){
 			if(request.response) {
 				$('.photos .thumbnail').each(function() {
 					if($(this).hasClass('category-image')) {
@@ -49,7 +47,7 @@ cms.init.add('photos_index', function(){
 				$('.thumbnail', cont).addClass('category-image');
 				self.remove();
 			}
-		},'json')
+		},'json');
 	});
 
 	$('.categories').on('click', '.icon-trash', function() {
@@ -59,11 +57,11 @@ cms.init.add('photos_index', function(){
 		var cont = $(this).parent();
 		var id = cont.data('id');
 		
-		Api.post('/api-photos.category_delete', {id: id}, function(request){
+		Api.post(SITE_URL + 'api-photos.category_delete', {id: id}, function(request){
 			if(request.response) {
 				window.location = '';
 			}
-		},'json')
+		},'json');
 	});
 
 	$( ".droppable .span1" ).droppable({
@@ -76,14 +74,14 @@ cms.init.add('photos_index', function(){
 			var category_id = $(this).data('id');
 			
 			element.hide();
-			Api.post('/api-photos.move', {id: id, category_id: category_id, category_image: $('.thumbnail ', element).hasClass('category-image')}, function(request){
+			Api.post(SITE_URL + 'api-photos.move', {id: id, category_id: category_id, category_image: $('.thumbnail ', element).hasClass('category-image')}, function(request){
 				if(request.response) {
 					cms.loader.hide();
 					element.remove();
 				} else {
 					element.show();
 				}
-			},'json')
+			},'json');
 		},
     });
 	
@@ -93,11 +91,11 @@ cms.init.add('photos_index', function(){
 		update: function(event, ui){
 			var pos = $('.categories').sortable("toArray", {attribute: 'data-id'});
 			cms.loader.show();
-			Api.post('/api-photos.categories_sort', {pos: pos, parent_id: CATEGORY_ID}, function(request){
+			Api.post(SITE_URL + 'api-photos.categories_sort', {pos: pos, parent_id: CATEGORY_ID}, function(request){
 				if(request.response) {
 					cms.loader.hide();
 				}
-			},'json')
+			},'json');
 		}
 	});
 
@@ -106,11 +104,11 @@ cms.init.add('photos_index', function(){
 		update: function(event, ui){
 			var pos = $('.sortable').sortable("toArray", {attribute: 'data-id'});
 			cms.loader.show();
-			Api.post('/api-photos.sort', {pos: pos, category_id: CATEGORY_ID}, function(request){
+			Api.post(SITE_URL + 'api-photos.sort', {pos: pos, category_id: CATEGORY_ID}, function(request){
 				if(request.response) {
 					cms.loader.hide();
 				}
-			},'json')
+			},'json');
 		}
 	});
 
@@ -120,11 +118,12 @@ cms.init.add('photos_index', function(){
 				save_category_modal_form($(this));
 			
 				e.preventDefault();
-			}).modal();
+			})
+            .modal();
 	});
 	
 	$('#edit-category').click(function(){
-		Api.get('/api-photos.category_edit', {
+		Api.get(SITE_URL + 'api-photos.category_edit', {
 			id: CATEGORY_ID
 		}, function(resp) {
 			if(resp.response) {
@@ -156,7 +155,7 @@ function save_category_modal_form(form) {
 	var description = form.find('textarea[name="description"]').val();
 	var slug = form.find('input[name="slug"]').val();
 
-	Api.post('/api-photos.category_save', {
+	Api.post(SITE_URL + 'api-photos.category_save', {
 		id: id,
 		title: title,
 		description: description,

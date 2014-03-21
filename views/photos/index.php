@@ -5,21 +5,20 @@
 <div id="Photos" class="widget">
 	<div class="widget-header">
 		<?php if( ! Request::initial()->is_iframe()): ?>
-		<?php echo UI::button(__('Add category'), array(
-			'icon' => UI::icon( 'plus' ), 'id' => 'create-category', 'data-target' => '#category-modal'
-		)); ?>
+		    <?php echo UI::button(__('Add category'), array(
+			    'icon' => UI::icon( 'plus' ), 'id' => 'create-category', 'data-target' => '#category-modal'
+		    )); ?>
 		
-		<?php if($category->loaded()): ?>
-		<?php echo UI::button(__('Edit category'), array(
-			'icon' => UI::icon( 'cog' ), 
-			'id' => 'edit-category',
-			'data-target' => '#category-modal', 
-			'class' => 'btn btn-primary'
-		)); ?>
+		    <?php if($category->loaded()): ?>
+		        <?php echo UI::button(__('Edit category'), array(
+			        'icon' => UI::icon( 'cog' ), 
+			        'id' => 'edit-category',
+			        'data-target' => 'category-modal', 
+			        'class' => 'btn btn-primary'
+		        ));?>
+		    <?php endif; ?>
 		<?php endif; ?>
-		
-		<?php endif; ?>
-		<div class="clearfix"></div>
+        <div class="clearfix"></div>
 	</div>
 	
 	<div class="widget-content">

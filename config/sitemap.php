@@ -6,7 +6,7 @@ return array(
 		'children' => array(
 			array(
 				'name' => __('Gallery'), 
-				'url' => URL::backend('photos'),
+				'url' => Route::get('backend')->uri(array('controller'=>'photos')),
 				'icon' => 'picture',
 				'priority' => 200,
 				'permissions' => 'photos.index'

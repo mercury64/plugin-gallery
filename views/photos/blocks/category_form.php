@@ -1,4 +1,4 @@
-<div id="category-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="category-modal" class="modal hide fade" tabindex="-1"  aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		<h3><?php echo __('New category'); ?></h3>
