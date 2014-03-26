@@ -2,7 +2,7 @@
 
 return array(
 	array(
-		'name' => 'Content',
+		'name' => __('Content'),
 		'children' => array(
 			array(
 				'name' => __('Gallery'), 
