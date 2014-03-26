@@ -18,7 +18,7 @@ cms.init.add('photos_index', function(){
 			var cont = $(this).parent();
 			var id = cont.data('id');
 
-			Api.post(SITE_URL + 'api-photos.delete', {id: id}, function(resp){
+			Api.post('api-photos.delete', {id: id}, function(resp){
 				if(resp.response) {
 					cont.fadeOut(function() {
 						$(this).remove();
@@ -33,7 +33,7 @@ cms.init.add('photos_index', function(){
 		var id = cont.data('id');
 		var self = $(this);
 		
-		Api.post(SITE_URL + 'api-photos.category_image', {id: id, category_id: CATEGORY_ID}, function(request){
+		Api.post('api-photos.category_image', {id: id, category_id: CATEGORY_ID}, function(request){
 			if(request.response) {
 				$('.photos .thumbnail').each(function() {
 					if($(this).hasClass('category-image')) {
@@ -57,7 +57,7 @@ cms.init.add('photos_index', function(){
 		var cont = $(this).parent();
 		var id = cont.data('id');
 		
-		Api.post(SITE_URL + 'api-photos.category_delete', {id: id}, function(request){
+		Api.post('api-photos.category_delete', {id: id}, function(request){
 			if(request.response) {
 				window.location = '';
 			}
@@ -74,7 +74,7 @@ cms.init.add('photos_index', function(){
 			var category_id = $(this).data('id');
 			
 			element.hide();
-			Api.post(SITE_URL + 'api-photos.move', {id: id, category_id: category_id, category_image: $('.thumbnail ', element).hasClass('category-image')}, function(request){
+			Api.post('api-photos.move', {id: id, category_id: category_id, category_image: $('.thumbnail ', element).hasClass('category-image')}, function(request){
 				if(request.response) {
 					cms.loader.hide();
 					element.remove();
@@ -91,7 +91,7 @@ cms.init.add('photos_index', function(){
 		update: function(event, ui){
 			var pos = $('.categories').sortable("toArray", {attribute: 'data-id'});
 			cms.loader.show();
-			Api.post(SITE_URL + 'api-photos.categories_sort', {pos: pos, parent_id: CATEGORY_ID}, function(request){
+			Api.post('api-photos.categories_sort', {pos: pos, parent_id: CATEGORY_ID}, function(request){
 				if(request.response) {
 					cms.loader.hide();
 				}
@@ -104,7 +104,7 @@ cms.init.add('photos_index', function(){
 		update: function(event, ui){
 			var pos = $('.sortable').sortable("toArray", {attribute: 'data-id'});
 			cms.loader.show();
-			Api.post(SITE_URL + 'api-photos.sort', {pos: pos, category_id: CATEGORY_ID}, function(request){
+			Api.post('api-photos.sort', {pos: pos, category_id: CATEGORY_ID}, function(request){
 				if(request.response) {
 					cms.loader.hide();
 				}
@@ -123,7 +123,7 @@ cms.init.add('photos_index', function(){
 	});
 	
 	$('#edit-category').click(function(){
-		Api.get(SITE_URL + 'api-photos.category_edit', {
+		Api.get('api-photos.category_edit', {
 			id: CATEGORY_ID
 		}, function(resp) {
 			if(resp.response) {
@@ -140,7 +140,7 @@ cms.init.add('photos_index', function(){
 	});
 	
 	$('#upload-video form').on('submit', function(e){
-		Api.post($(this).attr('action'), $(this).serialize(), function(response) {
+		Api.post('api-photos.from_url', $('#upload-video form').serialize(), function(response) {
 			var row = $(response.response).hide();
 			$('.photos').append(row.fadeIn(500));
 		}, 'json');
@@ -155,7 +155,7 @@ function save_category_modal_form(form) {
 	var description = form.find('textarea[name="description"]').val();
 	var slug = form.find('input[name="slug"]').val();
 
-	Api.post(SITE_URL + 'api-photos.category_save', {
+	Api.post('api-photos.category_save', {
 		id: id,
 		title: title,
 		description: description,
