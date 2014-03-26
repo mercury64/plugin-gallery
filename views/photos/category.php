@@ -3,6 +3,11 @@
 	<?php echo UI::icon('trash option'); ?>
 	<?php endif; ?>
 	<div class="thumbnail">
-		<?php echo HTML::anchor(URL::backend('photos/category/' . ($category->id > 0 ? $category->id : $category->parent_id)), $category->title); ?>
+		<?php echo HTML::anchor(
+				Route::get('backend')->uri(array(
+					'controller'=>'photos',
+					'action'=>'category')).'/'.
+					($category->id > 0 ? $category->id : $category->parent_id),
+				$category->title); ?>
 	</div>
 </div>
