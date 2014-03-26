@@ -6,7 +6,7 @@ class Controller_Photos extends Controller_System_Backend {
 	{
 		parent::before();
 		$this->breadcrumbs
-			->add(__('Gallery'), URL::backend('photos'));
+			->add(__('Gallery'), Route::get('backend')->uri(array('controller'=>'photos')));
 		
 		Assets::package(array('jquery-ui'));
 	}
