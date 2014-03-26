@@ -5,7 +5,7 @@
 		
 		<?php if(!empty($value) AND $field->category_exists($value)): ?>
 		<?php echo UI::button(__('View'), array(
-			'href' => Route::url('backend', array(
+			'href' => Route::get('backend')->uri(array(
 				'controller' => 'photos',
 				'action' => 'category',
 				'id' => $value
