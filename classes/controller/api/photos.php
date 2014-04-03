@@ -6,21 +6,16 @@ class Controller_API_Photos extends Controller_System_API {
 	{
 		$file = Upload::file($_FILES['file']);
 		
-		list($status, $filename) = $file;
-		
-		if($status == TRUE)
-		{
-			$photo = ORM::factory('photo')
-				->values(array(
-					'category_id' => (int) $this->param('id', NULL, 0),
-					'type' => Model_Photo::TYPE_IMAGE
-				))
-				->create();
-			
-			$photo->add_image($filename, 'filename');
-			
-			$this->response( View::factory('photos/image', array('photo' => $photo, 'category' => $photo->category))->render() );
-		}
+		$photo = ORM::factory('photo')
+			->values(array(
+				'category_id' => (int) $this->param('id', NULL, 0),
+				'type' => Model_Photo::TYPE_IMAGE
+			))
+			->create();
+
+		$photo->add_image($file, 'filename');
+
+		$this->response( View::factory('photos/image', array('photo' => $photo, 'category' => $photo->category))->render() );
 	}
 	
 	public function post_from_url()
