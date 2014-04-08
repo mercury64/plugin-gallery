@@ -1,0 +1,1 @@
+<?php echo debug::vars($categories, $photos, $videos, $category); ?>

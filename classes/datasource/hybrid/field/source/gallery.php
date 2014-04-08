@@ -8,7 +8,7 @@ class DataSource_Hybrid_Field_Source_Gallery extends DataSource_Hybrid_Field_Sou
 	
 	protected $_widget_types = array('gallery_categories');
 	
-	public function __construct( array $data = NULL)
+	public function __construct( array $data = NULL )
 	{
 		parent::__construct( $data );
 		$this->family = DataSource_Hybrid_Field::FAMILY_SOURCE;
